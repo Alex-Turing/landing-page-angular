@@ -1,9 +1,22 @@
 <ng-container *ngIf="!loading">
-    <h1>Product: {{product?.name}}</h1>
-    <h2 [ngStyle]="{'color': color}">Price: {{product?.price | currency}}</h2>
-    <h3 *ngIf="product?.description">Description: {{product?.description}}</h3> <!-- Si el objeto viene sin description, el *ngIf no renderiza el elemento HTML -->
+    <section>
+        <div class="card" style="width: 18rem">
+            <img
+            src="{{ product?.image }}"
+            class="card-img-top"
+            alt="{{ product?.title }}"
+            />
+            <div class="card-body">
+            <h5 class="card-title">{{ product?.title | uppercase}}</h5>
+            <p class="card-text" *ngIf="product?.description">
+                Description: {{ product?.description }}         <!-- Si el objeto viene sin description, el *ngIf no renderiza el elemento HTML -->
+            </p>
+            <p class="card-text">Price: {{ product?.price | currency }}</p>
+            </div>
+        </div>
+    </section>
 </ng-container>
 
 <ng-container *ngIf="loading">
-    <i style="color: blue">Loading products...</i>
+  <i style="color: blue">Loading products...</i>
 </ng-container>

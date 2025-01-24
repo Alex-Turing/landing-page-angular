@@ -8,6 +8,8 @@ import { ProductsComponent } from './products/products.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IdComponent } from './contact/id/id.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ProductsComponent,
     ContactComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    IdComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,  //se usa para formularios de tipo plantilla HTML
-    ReactiveFormsModule // se usa para formularios reactivos construidos en el componente
+    ReactiveFormsModule, // se usa para formularios reactivos construidos en el componente
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

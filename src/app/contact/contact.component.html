@@ -52,6 +52,7 @@ desde un formulario basado en formularios reactivos -->
         Name length is invalid
       </div>
     </div>
+    
     <div class="mb-3">
       <label for="lastName" class="form-label">Last Name</label>
       <input
@@ -72,6 +73,7 @@ desde un formulario basado en formularios reactivos -->
         Name length is invalid
       </div>
     </div>
+
     <div class="mb-3">
       <label for="idType" class="form-label">Type of ID</label>
       <select class="form-select" id="idType" formControlName="idType">
@@ -80,25 +82,11 @@ desde un formulario basado en formularios reactivos -->
         <option value="Permanent Resident Card">Permanent Resident Card</option>
       </select>
     </div>
-    <div class="mb-3">
-      <label for="id" class="form-label">{{typeOfId}}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="id"
-        formControlName="id"
-        [ngClass]="{
-          'is-invalid':
-            hasErrors('id', 'required') || hasErrors('id', 'minlength')
-        }"
-      />
-      <div class="text-danger" *ngIf="hasErrors('id', 'required')">
-        {{typeOfId}} is required
-      </div>
-      <div class="text-danger" *ngIf="hasErrors('id', 'minlength')">
-        {{typeOfId}} length is invalid
-      </div>
+
+    <div class="mb-3" *ngIf="showId">
+      <id-input [typeOfId]="typeOfId"/>
     </div>
+
     <div class="mb-3">
       <label for="email" class="form-label">Email address</label>
       <input
@@ -118,6 +106,7 @@ desde un formulario basado en formularios reactivos -->
         Email is required
       </div>
     </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

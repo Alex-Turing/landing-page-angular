@@ -1,0 +1,18 @@
+<form [formGroup]="docForm">
+  <label for="id" class="form-label">{{ typeOfId }}</label>
+  <input
+    type="text"
+    class="form-control"
+    id="id"
+    formControlName="id"
+    [ngClass]="{
+      'is-invalid': hasErrors('id', 'required') || hasErrors('id', 'minlength')
+    }"
+  />
+  <div class="text-danger" *ngIf="hasErrors('id', 'required')">
+    {{ typeOfId }} is required
+  </div>
+  <div class="text-danger" *ngIf="hasErrors('id', 'minlength')">
+    {{ typeOfId }} length is invalid
+  </div>
+</form>

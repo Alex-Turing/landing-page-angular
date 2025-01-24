@@ -13,7 +13,8 @@ export class ContactComponent implements OnInit {
    * un formulario basado formularios reactivos
    */
   contactForm: FormGroup;
-  typeOfId: string = 'Identificacion';
+  typeOfId?: string;
+  showId:boolean = false;
 
   /**
    * Este objeto de ejemplo fue usado para ver como puedo setar y/o
@@ -31,7 +32,6 @@ export class ContactComponent implements OnInit {
     this.contactForm = this._form.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.minLength(3)]],
-      id: ['', [Validators.required, Validators.minLength(6)]],
       idType: [''],
       email: ['', [Validators.email, Validators.required]],
     });
@@ -71,8 +71,13 @@ export class ContactComponent implements OnInit {
     // })
 
     this.contactForm.get('idType')?.valueChanges.subscribe(value => {
+      this.showId = value != '';
       this.typeOfId = value;
     })
+  }
+
+  ngOnDestroy():void {
+    console.log('Component destroyed!!');
   }
 
   submit() {
