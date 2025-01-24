@@ -1,0 +1,123 @@
+<!-- De esta manera de genera la interaccion con el componente 
+desde un formulario basado en template HTML, el elemsnto clave aca
+para la transferencia de datos es [(ngModel)] y el #myform="ngForm"-->
+
+<!-- <div class="form-container">
+  <form #myform="ngForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        [(ngModel)]="user.name" required
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="user.email" required
+          [ngModelOptions]="{standalone: true}"
+        />
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div> -->
+
+<!-- De esta manera de genera la interaccion con el componente 
+desde un formulario basado en formularios reactivos -->
+
+<div class="form-container">
+  <form [formGroup]="contactForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        [ngClass]="{
+          'is-invalid':
+            hasErrors('name', 'required') || hasErrors('name', 'minlength')
+        }"
+      />
+      <div class="text-danger" *ngIf="hasErrors('name', 'required')">
+        Name is required
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('name', 'minlength')">
+        Name length is invalid
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        formControlName="lastName"
+        [ngClass]="{
+          'is-invalid':
+            hasErrors('lastName', 'required') ||
+            hasErrors('lastName', 'minlength')
+        }"
+      />
+      <div class="text-danger" *ngIf="hasErrors('lastName', 'required')">
+        Name is required
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('lastName', 'minlength')">
+        Name length is invalid
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="idType" class="form-label">Type of ID</label>
+      <select class="form-select" id="idType" formControlName="idType">
+        <option value="Driver License">Driver License</option>
+        <option value="Passport">Passport</option>
+        <option value="Permanent Resident Card">Permanent Resident Card</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="id" class="form-label">{{typeOfId}}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="id"
+        formControlName="id"
+        [ngClass]="{
+          'is-invalid':
+            hasErrors('id', 'required') || hasErrors('id', 'minlength')
+        }"
+      />
+      <div class="text-danger" *ngIf="hasErrors('id', 'required')">
+        {{typeOfId}} is required
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('id', 'minlength')">
+        {{typeOfId}} length is invalid
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid':
+            hasErrors('email', 'required') || hasErrors('email', 'email')
+        }"
+      />
+      <div class="text-danger" *ngIf="hasErrors('email', 'email')">
+        Invalid email
+      </div>
+      <div class="text-danger" *ngIf="hasErrors('email', 'required')">
+        Email is required
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

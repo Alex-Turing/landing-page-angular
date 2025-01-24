@@ -1,0 +1,9 @@
+<ng-container *ngIf="!loading">
+    <h1>Product: {{product?.name}}</h1>
+    <h2 [ngStyle]="{'color': color}">Price: {{product?.price | currency}}</h2>
+    <h3 *ngIf="product?.description">Description: {{product?.description}}</h3> <!-- Si el objeto viene sin description, el *ngIf no renderiza el elemento HTML -->
+</ng-container>
+
+<ng-container *ngIf="loading">
+    <i style="color: blue">Loading products...</i>
+</ng-container>

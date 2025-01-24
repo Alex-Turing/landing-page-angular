@@ -1,0 +1,19 @@
+<h1>Cleaner Products</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productsList">
+        <th scope="row">{{product.id}}</th>
+        <td>{{product.name}}</td>
+        <td [ngClass]="{'overprice-color': product.price >= 15}">{{product.price | currency}}</td>
+        <button type="button" class="btn btn-outline-primary" [routerLink]="['/products', product.id]">Details</button> <!-- las propiedades como el color o el nombre del producto, etc, se nombran como string en ese array y en el mismo orden se consumen en app-routing -->
+      </tr>
+    </tbody>
+  </table>
